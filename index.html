@@ -1,0 +1,130 @@
+<!doctype html>
+<html>
+	<body>
+		<input type="file" />
+		<h2>Original</h2>
+		<canvas id="original" width="300" height="150"></canvas>
+		<h2>Copia</h2>
+		<canvas id="copia" width="300" height="150"></canvas>
+
+		<h2></h2>
+		<pre></pre>
+	</body>
+
+	<script src="index.js"></script>
+	<script>
+		/*function getHexadecimal(value) {
+			const roundedValue = Math.floor(value);
+			const stringValue = roundedValue.toString(16);
+
+			if (stringValue.length === 1) {
+				return "0" + stringValue;
+			}
+
+			return stringValue;
+		}
+
+		function drawPixel(context, x, y, color) {
+			var roundedX = Math.round(x);
+			var roundedY = Math.round(y);
+
+			context.beginPath();
+			context.fillStyle = color || '#000';
+			context.fillRect(roundedX, roundedY, 1, 1);
+			context.fill();
+		}
+
+		function copyImage(context) {
+			const canCopy = document.querySelector("#copia");
+			const contextCopy = canCopy.getContext("2d");
+
+			let text = "";
+
+			// const copyData = contextCopy.createImageData(canCopy.width, canCopy.height);
+
+			for (let y = 0; y < canCopy.height; ++y) {
+				// grayValues[indexWidth] = new Array(can.height);
+				for (let x = 0; x < canCopy.width; ++x) {
+					const imageData = context.getImageData(x, y, 1, 1).data;
+					const grayValue = 0.299 * imageData[0] + 0.587 * imageData[1] + 0.114 * imageData[2];
+
+					const hexColor = getHexadecimal(grayValue);
+
+					drawPixel(contextCopy, x, y, "#" + hexColor + hexColor + hexColor);
+
+					if (grayValue < 30) {
+						text += "@";
+					} else if (grayValue < 60) {
+						text += "M";
+					} else if (grayValue < 90) {
+						text += "#"
+					} else if (grayValue < 120) {
+						text += "A";
+					} else if (grayValue < 150) {
+						text += "3"
+					} else if (grayValue < 180) {
+						text += "?"
+					} else if (grayValue < 210) {
+						text += "^"
+					} else if (grayValue < 240) {
+						text += "-"
+					} else {
+						text += " ";
+					}
+				}
+
+				text += "\n";
+			}
+
+			document.querySelector("pre").textContent = text;
+		}
+
+		function loadImage() {
+			const canvas = document.querySelector("#original");
+			const context = canvas.getContext("2d");
+
+			const image = new Image();
+			image.src = "./et.jpg";
+			image.onload = function() {
+				context.drawImage(image, 0, 0, canvas.width, canvas.height);
+
+				copyImage(context);
+			}
+		}
+
+		loadImage();
+
+/*		const can = document.querySelector("#original");
+		const context = can.getContext("2d"); 
+
+		const canCopy = document.querySelector("#copia");
+		const contextCopy = canCopy.getContext("2d");
+
+		const image = new Image();
+		image.src = "./et.jpg";
+		image.onload = function() {
+			context.drawImage(image, 0, 0, can.width, can.height);
+
+			// let grayValues = new Array(can.width);
+
+			const copyData = contextCopy.createImageData(canCopy.width, canCopy.height);
+
+			for (let y = 0; y < can.height; ++y) {
+				// grayValues[indexWidth] = new Array(can.height);
+				for (let x = 0; x < can.width; ++x) {
+					const imageData = context.getImageData(x, y, 1, 1).data;
+					const grayValue = 0.299 * imageData[0] + 0.587 * imageData[1] + 0.114 * imageData[2];
+					// grayValues[indexWidth][indexHeight] = 0.299 * imageData[0] + 0.587 * imageData[1] + 0.114 * imageData[2];
+
+					const pixelindex = (y * canCopy.width + x);
+					copyData.data[pixelindex] = grayValue;
+				}
+			}
+
+			contextCopy.putImageData(copyData, 0, 0);
+
+
+			// console.log(grayValues);
+		}*/
+	</script>
+</html>
