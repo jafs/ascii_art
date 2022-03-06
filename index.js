@@ -1,4 +1,11 @@
+// @ts-check
+
+/** From darkest to lightest */
+const characterList = ["@", "M", "#", "A", "3", "?", "*", "-", " "];
+const range = 256 / characterList.length;
+
 function copyImage(context) {
+	/** @type HTMLCanvasElement */
 	const canCopy = document.querySelector("#copia");
 	const contextCopy = canCopy.getContext("2d");
 
@@ -12,25 +19,10 @@ function copyImage(context) {
 
 			drawPixel(contextCopy, x, y, "#" + hexColor + hexColor + hexColor);
 
-			if (grayValue < 30) {
-				text += "@";
-			} else if (grayValue < 60) {
-				text += "M";
-			} else if (grayValue < 90) {
-				text += "#"
-			} else if (grayValue < 120) {
-				text += "A";
-			} else if (grayValue < 150) {
-				text += "3"
-			} else if (grayValue < 180) {
-				text += "?"
-			} else if (grayValue < 210) {
-				text += "^"
-			} else if (grayValue < 240) {
-				text += "-"
-			} else {
-				text += " ";
-			}
+			const character = characterList[Math.floor(grayValue / range)];
+
+			console.assert(!!character, `Problem getting character position. Gray: ${grayValue}, Range: ${range}`);
+			text += character;
 		}
 
 		text += "\n";
@@ -43,6 +35,7 @@ function onInput(event) {
 	if (event.target.files && event.target.files[0]) {
 		const reader = new FileReader();
 		reader.onload = function(e) {
+			/** @type HTMLCanvasElement */
 			const canvas = document.querySelector("#original");
 			const context = canvas.getContext("2d");
 
@@ -50,7 +43,7 @@ function onInput(event) {
 			context.clearRect(0, 0, canvas.width, canvas.height);
 
 			const img = document.createElement("img");
-			img.src = e.target.result;
+			img.src = e.target.result.toString();
 
 			img.onload = function() {
 				context.drawImage(img, 0, 0, canvas.width, canvas.height);
