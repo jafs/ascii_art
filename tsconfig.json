@@ -1,0 +1,29 @@
+{
+	"compilerOptions": {
+		/* Language and Environment */
+		"target": "es5",
+		"lib": ["ES2015", "DOM"],
+
+		/* Modules */
+		"module": "commonjs",
+		"moduleResolution": "node",
+
+		/* Emit */
+		"sourceMap": false,
+		"outDir": "./dist",
+
+		/* Interop Constraints */
+		"esModuleInterop": true,
+		"forceConsistentCasingInFileNames": true,
+
+		/* Completeness */
+		"skipLibCheck": true
+	},
+	"exclude": [
+		"./node_modules/*",
+		"./test/*"
+	],
+	"include": [
+		"./src"
+	],
+}
