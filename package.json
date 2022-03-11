@@ -5,8 +5,7 @@
   "main": "dist/asciiart.min.js",
   "scripts": {
     "minify": "minify dist/asciiart.js > dist/asciiart.min.js",
-    "build": "tsc",
-    "test": "jest"
+    "build": "tsc"
   },
   "author": {
     "name": "José Antonio Fuentes Santiago",
@@ -28,10 +27,7 @@
   "license": "ISC",
   "homepage": "https://github.com/jafs/ascii_art#readme",
   "devDependencies": {
-    "@types/jest": "27.4.0",
-    "jest": "27.5.1",
     "minify": "6.0.0",
-    "ts-jest": "27.1.3",
     "typescript": "4.5.5"
   }
 }

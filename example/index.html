@@ -1,17 +1,28 @@
 <!doctype html>
 <html>
 	<head>
-		<title>ASCII art example</title>
+		<title>ASCII art example playground</title>
+		<style>
+			div {
+				width: 200ch;
+				margin: 0 auto;
+			}
+
+			pre {
+				line-height: 8pt;
+			}
+		</style>
 	</head>
 
 	<body>
-		<p>Select an image file to convert it to an ASCII image:</p>
-		<input type="file" />
+		<div>
+			<p>Select an image file to convert it to an ASCII image of 200x150 characters:</p>
+			<input type="file" />
 		
-		<h2>Result</h2>
-		<pre></pre>
-		
-		<script src="../dist/asciiart.min.js"></script>
-		<script src="example.js"></script>
+			<h2>Result</h2>
+			<pre></pre>
+		</div>
+
+		<script type="module" src="index.js"></script>
 	</body>
 </html>

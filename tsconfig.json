@@ -5,7 +5,7 @@
 		"lib": ["ES2015", "DOM"],
 
 		/* Modules */
-		"module": "commonjs",
+		"module": "ES2015",
 		"moduleResolution": "node",
 
 		/* Emit */

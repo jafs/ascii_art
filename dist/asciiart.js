@@ -1,6 +1,9 @@
-"use strict";
-Object.defineProperty(exports, "__esModule", { value: true });
-exports.imageToString = void 0;
+/**
+ * jascii-art 0.0.1
+ * José Antonio Fuentes Santiago
+ * https://jafs.es
+ * Project homepage: https://github.com/jafs/ascii_art
+ */
 /** From 0x00 to 0xFF */
 var GRAY_RANGE = 256;
 /** From darkest to lightest */
@@ -15,7 +18,7 @@ var DEFAULT_CHARACTERS = ["@", "M", "#", "A", "3", "?", "*", "-", " "];
  * @param {string[]} charactersList Array of characters to use, ordered from darkest to
  *                   lightest.
  */
-function imageToString(imageElement, charactersWidth, charactersHeight, charactersList) {
+export function imageToString(imageElement, charactersWidth, charactersHeight, charactersList) {
     if (charactersList === void 0) { charactersList = DEFAULT_CHARACTERS; }
     // We use a canvas to intermediate resize and read image pixels.
     var canvas = createCanvas(charactersWidth, charactersHeight);
@@ -24,7 +27,6 @@ function imageToString(imageElement, charactersWidth, charactersHeight, characte
     canvas.remove();
     return asciiImage;
 }
-exports.imageToString = imageToString;
 function createCanvas(width, height) {
     var canvas = document.createElement("canvas");
     canvas.width = width;

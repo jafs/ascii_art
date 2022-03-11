@@ -1,3 +1,10 @@
+/**
+ * jascii-art 0.0.1
+ * José Antonio Fuentes Santiago
+ * https://jafs.es
+ * Project homepage: https://github.com/jafs/ascii_art
+ */
+
 /** From 0x00 to 0xFF */
 const GRAY_RANGE: number = 256;
 /** From darkest to lightest */
@@ -8,17 +15,17 @@ const DEFAULT_CHARACTERS: string[] = ["@", "M", "#", "A", "3", "?", "*", "-", " 
  * height, and finally a set of characters to use to convert image.
  * Finally returns a string with the converted image intro ASCII string.
  * @param {HTMLImageElement} imageElement Image to convert.
- * @param {number} charactersWidth Width in number of characters for the ASCII string.
- * @param {number} charactersHeight Height in number of characters for the ASCII string.
+ * @param {number} columns Mumber of characters used for a line.
+ * @param {number} rows Number of lines with characters.
  * @param {string[]} charactersList Array of characters to use, ordered from darkest to
  *                   lightest.
  */
 export function imageToString(
-	imageElement: HTMLImageElement, charactersWidth: number, charactersHeight: number,
+	imageElement: HTMLImageElement, columns: number, rows: number,
 	charactersList: string[] = DEFAULT_CHARACTERS
 ): string {
 	// We use a canvas to intermediate resize and read image pixels.
-	const canvas: HTMLCanvasElement = createCanvas(charactersWidth, charactersHeight);
+	const canvas: HTMLCanvasElement = createCanvas(columns, rows);
 	
 	loadImageOnCanvas(canvas, imageElement);
 
@@ -29,11 +36,11 @@ export function imageToString(
 	return asciiImage;
 }
 
-function createCanvas(width: number, height: number): HTMLCanvasElement {
+function createCanvas(columns: number, rows: number): HTMLCanvasElement {
 	const canvas: HTMLCanvasElement = document.createElement("canvas");
 
-	canvas.width = width;
-	canvas.height = height;
+	canvas.width = columns;
+	canvas.height = rows;
 
 	return canvas;
 }
@@ -46,6 +53,7 @@ function loadImageOnCanvas(canvas: HTMLCanvasElement, imageElement: HTMLImageEle
 function canvasToString(canvas: HTMLCanvasElement, characters: string[]): string {
 	const context: CanvasRenderingContext2D = canvas.getContext("2d");
 	const { width, height } = canvas;
+
 	// Range is the group of values used for each character.
 	const range: number = GRAY_RANGE / characters.length;
 
